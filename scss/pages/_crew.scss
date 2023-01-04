@@ -1,0 +1,109 @@
+@use '../abstracts/' as *;
+
+/* Crew */
+
+#crew .main {
+   @include flex(unset, flex-end, column);
+   padding-bottom: 0;
+   & > * {
+      flex-basis: 50%;
+   }
+   @include mq('tablet-small') {
+      flex-direction: column-reverse;
+   }
+   @include mq('desktop-small') {
+      flex-direction: row-reverse;
+      padding-bottom: 0;
+      & .crew-info {
+         flex-basis: 70%;
+      }
+   }
+}
+
+.crew {
+   &-member {
+      margin-inline: auto;
+      border-bottom: .5px solid rgba(255, 255, 255, .15);
+      @include mq('tablet-small') {
+         margin-top: auto;
+      }
+      &-img {
+         max-width: 55%;
+         margin-inline: auto;
+         transition: opacity var(--transition-duration) linear;
+         @include mq('tablet-small') {
+            max-width: 80%;
+         }
+         @include mq('desktop-small') {
+            max-width: 100%;
+         }
+      }
+   }
+   &-navs {
+      @include flex(center);
+      gap: var(--size-200);
+      margin-block: var(--size-250);
+      @include mq('tablet-small') {
+         margin-block: var(--size-350);
+      }
+      @include mq('desktop-small') {
+         @include flex(flex-start);
+      }
+   }
+   &-navigator {
+      padding: var(--size-100);
+      border-radius: var(--size-500);
+      border: 0;
+      opacity: .25;
+      transition: opacity .5s linear;
+      &:hover,
+      &:focus-visible {
+         opacity: .65;
+      }
+      &[data-active] {
+         opacity: 1;
+      }
+   }
+   &-info {
+      padding-bottom: var(--size-450);
+      @include flex(unset, unset, column-reverse);
+      @include mq('tablet-small') {
+         padding-bottom: var(--size-250);
+         flex-direction: column;
+      }
+   }
+   &-role {
+      opacity: .5;
+      margin-bottom: var(--size-250);
+      transition: opacity var(--transition-duration) linear;
+      font-size: var(--fs-milli);
+      @include mq('tablet-small') {
+         font-size: var(--fs-sm);
+      }
+      @include mq('desktop-small') {
+         font-size: var(--fs-lg);
+      }
+   }
+   &-name {
+      margin-bottom: var(--size-200);
+      transition: opacity var(--transition-duration) linear;
+      font-size: var(--fs-sm);
+      @include mq('tablet-small') {
+         font-size: var(--fs-xl);
+      }
+      @include mq('desktop-small') {
+         font-size: var(--fs-xxl);
+      }
+   }
+   &-bio {
+      transition: opacity var(--transition-duration) linear;
+      @include mq('tablet-small') {
+         max-width: 60%;
+         margin-inline: auto;
+      }
+      @include mq('desktop-small') {
+         margin-inline: 0;
+         max-width: 70%;
+      }
+   }
+}

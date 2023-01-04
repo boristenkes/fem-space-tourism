@@ -1,0 +1,27 @@
+@use 'breakpoints' as *;
+
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if ($type == min) {
+      $width: $width + 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($justify: unset, $align: unset, $direction: unset) {
+  display: flex;
+
+  @if $justify != unset {
+    justify-content: $justify;
+  }
+  @if $align != unset {
+    align-items: $align;
+  }
+  @if $direction != unset {
+    flex-direction: $direction;
+  }
+}

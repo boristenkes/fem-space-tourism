@@ -1,0 +1,24 @@
+@use '../abstracts' as *;
+
+/*===============
+   Backgrounds
+===============*/
+
+$pages: home, destination, crew, technology;
+
+@each $page in $pages {
+   body##{$page} {
+      background-image: url('../assets/#{$page}/background-#{$page}-mobile.jpg');
+      
+      @include mq('tablet-small') {
+         background-image: url('../assets/#{$page}/background-#{$page}-tablet.jpg');
+      }
+      @include mq('desktop-small') {
+         background-image: url('../assets/#{$page}/background-#{$page}-desktop.jpg');
+      }
+   }
+}
+
+/*=====================
+   End of Backgrounds
+======================*/

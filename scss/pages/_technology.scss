@@ -1,0 +1,99 @@
+@use '../abstracts/' as *;
+
+/* Technology */
+
+#technology .main {
+   @include mq('tablet-wide') {
+      @include flex(unset, center, row-reverse);
+   }
+}
+
+.tech {
+   &-info {
+      @include mq('tablet-wide') {
+         @include flex(unset, flex-start);
+      }
+   }
+   &-navs {
+      @include flex(center);
+      gap: var(--size-250);
+      padding-block: var(--size-250);
+      @include mq('tablet-small') {
+         margin-block: var(--size-300) var(--size-200);
+      }
+      @include mq('tablet-wide') {
+         flex-direction: column;
+         margin-inline: var(--size-450);
+         margin-block: 0;
+         padding-block: 0;
+      }
+   }
+   &-navigator {
+      padding: .8em 1em;
+      border-radius: 50%;
+      font-size: var(--fs-milli);   
+      border: 1px solid rgba(white, .25);
+      color: var(--clr-neutral-100);
+      background: transparent;
+      transition: color, background-color, 250ms ease-in-out;
+      @include mq('tablet-small') {
+         font-size: var(--fs-sm);
+      }
+      @include mq('desktop-small') {
+         font-size: var(--fs-lg);
+      }
+      &:hover,
+      &:focus-visible {
+         border-color: rgba(white, .75);
+      }
+      &[data-active] {
+         color: var(--clr-neutral-900);
+         background: var(--clr-neutral-100);
+      }
+   }
+   &-picture {
+      transition: opacity var(--transition-duration) linear;
+   }
+   &-img {
+      transition: opacity var(--transition-duration) linear;
+      width: 100vw;
+      @include mq('tablet-wide') {
+         max-width: 30rem;
+      }
+   }
+   &-terminology {
+      display: block;
+      letter-spacing: 2.36px;
+      margin-bottom: var(--size-200);
+      font-size: .875rem;
+      text-transform: uppercase;
+      font-family: var(--ff-label);
+      @include mq('tablet-small') {
+         font-size: 1rem;
+      }
+   }
+   &-name {
+      margin-block: var(--size-100) var(--size-250);
+      transition: opacity var(--transition-duration) linear;
+      font-size: var(--fs-sm);
+      @include mq('tablet-small') {
+         font-size: var(--fs-xl);
+      }
+      @include mq('desktop-small') {
+         font-size: var(--fs-xxl);
+      }
+   }
+   &-description {
+      max-width: 92%;
+      margin-inline: auto;
+      padding-bottom: var(--size-350);
+      transition: opacity var(--transition-duration) linear;
+      @include mq('tablet-small') {
+         max-width: 58%;
+      }
+      @include mq('tablet-wide') {
+         margin-inline: 0;
+         max-width: 80%;
+      }
+   }
+}

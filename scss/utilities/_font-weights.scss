@@ -1,0 +1,7 @@
+@use '../abstracts/' as *;
+
+@each $label, $weight in $font-weights {
+   .fw-#{$label} {
+      font-weight: #{$weight};
+   }
+}

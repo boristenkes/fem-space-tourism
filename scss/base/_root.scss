@@ -1,0 +1,20 @@
+@use '../abstracts/' as *;
+
+:root {
+   @each $label, $size in $font-sizes {
+      --fs-#{$label}: #{$size};
+   }
+   @each $label, $weight in $font-weights {
+      --fw-#{$label}: #{$weight};
+   }
+   @each $label, $family in $font-families {
+      --ff-#{$label}: #{$family};
+   }
+   @each $label, $size in $sizes {
+      --size-#{$label}: #{$size};
+   }
+   @each $label, $color in $colors {
+      --clr-#{$label}: #{$color};
+   }
+   --transition-duration: 200ms;
+}

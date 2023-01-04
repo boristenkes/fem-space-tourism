@@ -1,0 +1,13 @@
+/* Google fonts - Bellefair Regular 400 -=> https://fonts.google.com/specimen/Bellefair?query=Bellefair */
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
+/* Google fonts - Barlow Regular 400 -=> https://fonts.google.com/specimen/Barlow?query=Barlow */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+/* Google fonts - Barlow Conensed Regular 400 -=> https://fonts.google.com/specimen/Barlow+Condensed?query=barlow */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400&display=swap');
+
+$font-families: (
+   fancy: "'Bellefair', serif",
+   body: "'Barlow', sans-serif",
+   label: "'Barlow Condensed', sans-serif",
+   nav: "'Barlow Condensed', sans-serif"
+);

@@ -1,0 +1,80 @@
+@use '../abstracts/' as *;
+
+/* Home */
+
+#home .main {
+   @include flex(space-around);
+   width: 100%;
+   flex-direction: column;
+   margin-top: auto;
+   
+   & > * {
+      flex: 1;
+   }
+   @include mq('tablet-wide') {
+      flex-direction: row;
+   }
+}
+.subtitle {
+   font-size: var(--fs-milli);
+   margin-top: var(--size-300);
+   margin-inline: auto;
+   letter-spacing: 2.7px;
+   @include mq(tablet-small ) {
+      font-size: var(--fs-xs);
+      margin-top: var(--size-500);
+      letter-spacing: 3.38px;
+   }
+   @include mq('desktop-small') {
+      font-size: var(--fs-md);
+      margin-inline: 0;
+      letter-spacing: 4.72px;
+   }
+}
+.big-title {
+   font-size: var(--fs-kilo);
+   margin-block: var(--size-300);
+   margin-inline: auto;
+   @include mq('tablet-small') {
+      font-size: var(--fs-giga);
+   }
+   @include mq('desktop-small') {
+      margin-inline: 0;
+   }
+}
+.paragraph {
+   margin-inline: auto;
+   @include mq('phone') {
+      max-width: 80%;
+   }
+   @include mq('tablet') {
+      max-width: 60%;
+   }
+   @include mq('desktop-small') {
+      margin-inline: 0;
+      max-width: 100%;
+   }
+}
+.main-right {
+   @include flex(center, center);
+}
+a.cta {
+   padding: 4em 1.5em;
+   border-radius: 50%;
+   font-size: var(--fs-xs);
+   letter-spacing: var(--size-50);
+   margin-top: var(--size-450);
+   @include mq('tablet-small') {
+      font-size: var(--fs-lg);
+      padding-inline: 1.8em;
+   }
+   @include mq('desktop-small') {
+      font-size: var(--fs-md);
+      margin-top: auto;
+      margin-left: auto;
+   }
+   &:hover,
+   &:focus-visible {
+      animation: pulse 1.2s ease-in-out infinite;
+   }
+}

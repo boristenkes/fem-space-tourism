@@ -1,0 +1,65 @@
+/*=================
+   Resets Start
+=================*/
+*, *::before, *::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   font: inherit;
+}
+::selection {
+   background: var(--clr-primary);
+   color: var(--clr-neutral-900);
+}
+html:focus-within {
+   scroll-behavior: smooth;
+}
+body {
+   min-height: 100vh;
+   line-height: 1;
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+   color: var(--clr-neutral-100);
+}
+a,
+a:visited,
+a:active {
+   text-decoration: none;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+   max-width: 100%;
+   display: block;
+}
+button,
+textarea,
+input,
+select {
+   font: inherit;
+}
+button {
+   cursor: pointer;
+}
+ul {
+   list-style: none;
+}
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+   html:focus-within {
+    scroll-behavior: auto;
+   }
+   *, *::before, *::after {
+     animation-duration: .01ms !important;
+     animation-iteration-count: 1 !important;
+     transition-duration: .01ms !important;
+     scroll-behavior: auto !important;
+   }
+}
+
+/*==============
+   Resets End
+==============*/
