@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Frontend Mentor Solution](https://www.frontendmentor.io/solutions/space-tourism-multipage-website-V31wMmMAVL)
 - Live Site URL: [Space Tourism](https://boristenkes-space-tourism.netlify.app/)
 
 ## My process
