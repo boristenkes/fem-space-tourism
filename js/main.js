@@ -42,7 +42,6 @@ const carouselElements = {
    }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
 const navWrapper = document.querySelector('[data-nav-wrapper]');
 
 if (navWrapper) { // Check if there is navWrapper on page
@@ -57,35 +56,35 @@ if (navWrapper) { // Check if there is navWrapper on page
       activeNav === navs[indexOfClickedNav]
       ) return;
       const elements = carouselElements[carouselName];
-      
-      const response = await fetch(api_url);
-      const data = await response.json();
-   
-      if (!data.hasOwnProperty(carouselName)) 
-         return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
-   
-      const newData = await data[carouselName][indexOfClickedNav];
+
+      setOpacity(elements, 0);
+      fetch(api_url)
+      .then(response => response.json())
+      .then(data => {
+         if (!data.hasOwnProperty(carouselName)) 
+            return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
+
+         const newData = data[carouselName][indexOfClickedNav];
+
+         setTimeout(() => {
+            replaceInfo(elements, newData);
+            setOpacity(elements, '100%');
+         }, transitionDuration);
+      });
    
       // Passing `data-active` attribute to clicked navigator
       activeNav.removeAttribute('data-active');
       navs[indexOfClickedNav].setAttribute('data-active', '');
-   
-      setOpacity(elements, 0); // Hide elements.
-      setTimeout(() => { // Wait for elements to turn completely invisible...
-         replaceInfo(elements, newData); // ...then replace info in HTML elements
-         setOpacity(elements, '100%'); // and show elements again
-      }, transitionDuration);
    });
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////
 
 function setOpacity(obj, opacity) {
    Object.values(obj).forEach(el => {
       /* crew role is the only element that has opacity 50%, 
       so we need this `if` to keep it that way */
       if (el.hasAttribute('data-role')) {
-         opacity = !opacity ? 0 : '50%';
+         if (opacity !== 0)
+            opacity = '50%';
          el.style.opacity = opacity;
       }
       else
@@ -117,35 +116,3 @@ function replaceInfo(obj, newData) {
       }
    });
 }
-
-// fetch(API_URL)
-// .then(response => response.json())
-// .then(data => {
-//    const navWrapper = document.querySelector('[data-nav-wrapper]');
-//    if (!navWrapper) return; // No 'navWrapper' === No carousel on page === No need for further code
-//    const navs = [...navWrapper.children];
-
-//    const carouselName = document.querySelector('[data-carousel]').getAttribute('data-carousel'); // There can be only one [data-carousel] per page...
-//    if (!data.hasOwnProperty(carouselName)) return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
-   
-//    navWrapper.addEventListener('click', e => {
-//       const activeNav = navWrapper.querySelector('[data-active]');
-//       const indexOfClickedNav = navs.indexOf(e.target);
-//       if (e.target.tagName !== 'BUTTON' ||
-//             activeNav === navs[indexOfClickedNav]
-//          ) return;
-//       const elements = carouselElements[carouselName];
-//       const newData = data[carouselName][indexOfClickedNav];
-   
-//       // Passing `data-active` attribute to clicked navigator
-//       activeNav.removeAttribute('data-active');
-//       navs[indexOfClickedNav].setAttribute('data-active', '');
-   
-//       setOpacity(elements, 0); // Hide elements.
-//       setTimeout(() => { // Wait for elements to turn completely invisible...
-//          replaceInfo(elements, newData); // ...then replace info in HTML elements
-//          setOpacity(elements, '100%'); // and show elements again
-//       }, transitionDuration);
-//    });
-// })
-// .catch(err => console.error('Error fetching data: ' + err));
