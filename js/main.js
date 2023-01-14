@@ -66,10 +66,19 @@ fetch(API_URL)
       navs[indexOfClickedNav].setAttribute('data-active', '');
    
       setOpacity(elements, 0); // Hide elements.
-      setTimeout(() => { // Wait for elements to turn completely invisible...
-         replaceInfo(elements, newData); // ...then replace info in HTML elements
-         setOpacity(elements, '100%'); // and show elements again
+      setTimeout(() => {
+         Promise.all([newData])
+         .then(() => {
+            replaceInfo(elements, newData); // ...then replace info in HTML elements
+            setOpacity(elements, '100%'); // and show elements again
+         });
       }, transitionDuration);
+
+      // setOpacity(elements, 0); // Hide elements.
+      // setTimeout(() => { // Wait for elements to turn completely invisible...
+      //    replaceInfo(elements, newData); // ...then replace info in HTML elements
+      //    setOpacity(elements, '100%'); // and show elements again
+      // }, transitionDuration);
    });
 })
 .catch(err => console.error('Error fetching data: ' + err));
