@@ -17,7 +17,7 @@ menuBtn.addEventListener('click', () => {
  *    Carousel 
  */
 
-const API_URL = './data.json';
+const api_url = './data.json';
 const transitionDuration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--transition-duration')); // Getting value of CSS var for transition duration
 
 const carouselElements = {
@@ -42,24 +42,29 @@ const carouselElements = {
    }
 }
 
-fetch(API_URL)
-.then(response => response.json())
-.then(data => {
-   const navWrapper = document.querySelector('[data-nav-wrapper]');
-   if (!navWrapper) return; // No 'navWrapper' === No carousel on page === No need for further code
-   const navs = [...navWrapper.children];
+///////////////////////////////////////////////////////////////////////////////////////////
+const navWrapper = document.querySelector('[data-nav-wrapper]');
 
-   const carouselName = document.querySelector('[data-carousel]').getAttribute('data-carousel'); // There can be only one [data-carousel] per page...
-   if (!data.hasOwnProperty(carouselName)) return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
+if (navWrapper) { // Check if there is navWrapper on page
+   navWrapper.addEventListener('click', async e => {
+      const navs = [...navWrapper.children];
    
-   navWrapper.addEventListener('click', e => {
+      const carouselName = document.querySelector('[data-carousel]').getAttribute('data-carousel'); // There can be only one [data-carousel] per page...
+      
       const activeNav = navWrapper.querySelector('[data-active]');
       const indexOfClickedNav = navs.indexOf(e.target);
       if (e.target.tagName !== 'BUTTON' ||
-            activeNav === navs[indexOfClickedNav]
-         ) return;
+      activeNav === navs[indexOfClickedNav]
+      ) return;
       const elements = carouselElements[carouselName];
-      const newData = data[carouselName][indexOfClickedNav];
+      
+      const response = await fetch(api_url);
+      const data = await response.json();
+   
+      if (!data.hasOwnProperty(carouselName)) 
+         return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
+   
+      const newData = await data[carouselName][indexOfClickedNav];
    
       // Passing `data-active` attribute to clicked navigator
       activeNav.removeAttribute('data-active');
@@ -71,8 +76,9 @@ fetch(API_URL)
          setOpacity(elements, '100%'); // and show elements again
       }, transitionDuration);
    });
-})
-.catch(err => console.error('Error fetching data: ' + err));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
 function setOpacity(obj, opacity) {
    Object.values(obj).forEach(el => {
@@ -111,3 +117,35 @@ function replaceInfo(obj, newData) {
       }
    });
 }
+
+// fetch(API_URL)
+// .then(response => response.json())
+// .then(data => {
+//    const navWrapper = document.querySelector('[data-nav-wrapper]');
+//    if (!navWrapper) return; // No 'navWrapper' === No carousel on page === No need for further code
+//    const navs = [...navWrapper.children];
+
+//    const carouselName = document.querySelector('[data-carousel]').getAttribute('data-carousel'); // There can be only one [data-carousel] per page...
+//    if (!data.hasOwnProperty(carouselName)) return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
+   
+//    navWrapper.addEventListener('click', e => {
+//       const activeNav = navWrapper.querySelector('[data-active]');
+//       const indexOfClickedNav = navs.indexOf(e.target);
+//       if (e.target.tagName !== 'BUTTON' ||
+//             activeNav === navs[indexOfClickedNav]
+//          ) return;
+//       const elements = carouselElements[carouselName];
+//       const newData = data[carouselName][indexOfClickedNav];
+   
+//       // Passing `data-active` attribute to clicked navigator
+//       activeNav.removeAttribute('data-active');
+//       navs[indexOfClickedNav].setAttribute('data-active', '');
+   
+//       setOpacity(elements, 0); // Hide elements.
+//       setTimeout(() => { // Wait for elements to turn completely invisible...
+//          replaceInfo(elements, newData); // ...then replace info in HTML elements
+//          setOpacity(elements, '100%'); // and show elements again
+//       }, transitionDuration);
+//    });
+// })
+// .catch(err => console.error('Error fetching data: ' + err));
