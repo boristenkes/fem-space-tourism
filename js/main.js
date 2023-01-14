@@ -1,26 +1,11 @@
-/* Utility functions */
-
-const getElement = (selector) => {
-   return document.querySelector(selector);
-}
-const getElements = (selector) => {
-   return document.querySelectorAll(selector);
-}
-const addEvent = (element, event, func) => {
-   element.addEventListener(event, func);
-}
-const addEvents = ([...elements], event, func) => {
-   elements.forEach(el => el.addEventListener(event, func));
-}
-
 /*
  *    Menu 
  */
 
-const nav = getElement('[data-nav]');
-const menuBtn = getElement('[data-toggle-nav]');
+const nav = document.querySelector('[data-nav]');
+const menuBtn = document.querySelector('[data-toggle-nav]');
 
-addEvent(menuBtn, 'click', () => {
+menuBtn.addEventListener('click', () => {
    [nav, menuBtn].forEach(el => {
       el.toggleAttribute('data-active');
       if (el === nav);
@@ -38,36 +23,36 @@ const transitionDuration = parseInt(getComputedStyle(document.documentElement).g
 const carouselElements = {
    //! KEYS MUST BE SAME AS KEYS IN DATA FILE
    destination: { // HTML Elements for 'destination' page
-      name: getElement('[data-name-planet]'),
-      images: getElement('[data-img-planet]'),
-      description: getElement('[data-desc-planet]'),
-      distance: getElement('[data-distance]'),
-      travel: getElement('[data-travel]'),
+      name: document.querySelector('[data-name-planet]'),
+      images: document.querySelector('[data-img-planet]'),
+      description: document.querySelector('[data-desc-planet]'),
+      distance: document.querySelector('[data-distance]'),
+      travel: document.querySelector('[data-travel]'),
    },
    crew: { // HTML Elements for 'crew' page
-      name: getElement('[data-name-crew]'),
-      images: getElement('[data-img-crew]'),
-      bio: getElement('[data-bio]'),
-      role: getElement('[data-role]'),
+      name: document.querySelector('[data-name-crew]'),
+      images: document.querySelector('[data-img-crew]'),
+      bio: document.querySelector('[data-bio]'),
+      role: document.querySelector('[data-role]'),
    },
    technology: { // HTML Elements for 'technology' page
-      name: getElement('[data-name-tech]'),
-      images: getElement('[data-img-tech]'),
-      description: getElement('[data-desc-tech]'),
+      name: document.querySelector('[data-name-tech]'),
+      images: document.querySelector('[data-img-tech]'),
+      description: document.querySelector('[data-desc-tech]'),
    }
 }
 
 fetch(API_URL)
 .then(response => response.json())
 .then(data => {
-   const navWrapper = getElement('[data-nav-wrapper]');
+   const navWrapper = document.querySelector('[data-nav-wrapper]');
    if (!navWrapper) return; // No 'navWrapper' === No carousel on page === No need for further code
    const navs = [...navWrapper.children];
 
-   const carouselName = getElement('[data-carousel]').getAttribute('data-carousel'); // There can be only one [data-carousel] per page...
+   const carouselName = document.querySelector('[data-carousel]').getAttribute('data-carousel'); // There can be only one [data-carousel] per page...
    if (!data.hasOwnProperty(carouselName)) return console.error('Unknown carousel name: ' + carouselName); // ...and it must match one of properties in 'data'
    
-   addEvent(navWrapper, 'click', e => {
+   navWrapper.addEventListener('click', e => {
       const activeNav = navWrapper.querySelector('[data-active]');
       const indexOfClickedNav = navs.indexOf(e.target);
       if (e.target.tagName !== 'BUTTON' ||
