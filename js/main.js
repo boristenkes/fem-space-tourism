@@ -75,6 +75,15 @@ if (navWrapper) { // Check if there is navWrapper on page
       // Passing `data-active` attribute to clicked navigator
       activeNav.removeAttribute('data-active');
       navs[indexOfClickedNav].setAttribute('data-active', '');
+<<<<<<< HEAD
+=======
+   
+      setOpacity(elements, 0); // Hide elements.
+      setTimeout(() => { // Wait for elements to turn completely invisible...
+         replaceInfo(elements, newData); // ...then replace info in HTML elements
+         setOpacity(elements, '100%'); // and show elements again
+      }, transitionDuration);
+>>>>>>> parent of 20b226f (Improved JS code for carousels)
    });
 }
 
