@@ -10,6 +10,11 @@
       @content;
     }
   }
+  @else if $width == landscape or $width == portrait {
+    @media only screen and (orientation: $width) {
+      @content;
+    } 
+  }
 }
 
 @mixin flex($justify: unset, $align: unset, $direction: unset) {

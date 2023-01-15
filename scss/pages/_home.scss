@@ -6,13 +6,13 @@
    @include flex(space-around);
    width: 100%;
    flex-direction: column;
-   margin-top: auto;
    
    & > * {
       flex: 1;
    }
-   @include mq('tablet-wide') {
+   @include mq(landscape) {
       flex-direction: row;
+      margin-top: 10rem;
    }
 }
 .subtitle {
@@ -59,14 +59,16 @@
    @include flex(center, center);
 }
 a.cta {
-   padding: 4em 1.5em;
+   height: 9em;
+   aspect-ratio: 1;
+   display: grid;
+   place-items: center;
    border-radius: 50%;
    font-size: var(--fs-xs);
    letter-spacing: var(--size-50);
    margin-top: var(--size-450);
    @include mq('tablet-small') {
       font-size: var(--fs-lg);
-      padding-inline: 1.8em;
    }
    @include mq('desktop-small') {
       font-size: var(--fs-md);

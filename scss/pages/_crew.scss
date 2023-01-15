@@ -11,7 +11,7 @@
    @include mq('tablet-small') {
       flex-direction: column-reverse;
    }
-   @include mq('desktop-small') {
+   @include mq(landscape) {
       flex-direction: row-reverse;
       padding-bottom: 0;
       & .crew-info {
@@ -46,7 +46,7 @@
       @include mq('tablet-small') {
          margin-block: var(--size-350);
       }
-      @include mq('desktop-small') {
+      @include mq(landscape) {
          @include flex(flex-start);
       }
    }

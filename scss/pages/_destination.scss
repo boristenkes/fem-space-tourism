@@ -4,8 +4,8 @@
 
 #destination .main {
    @include flex(unset, center, column);
-   max-width: 70%;
-   @include mq('desktop-small') {
+   max-width: min(70%, var(--container-width));
+   @include mq(landscape) {
       @include flex(space-between, center, row);
       gap: var(--size-350);
    }
@@ -29,7 +29,7 @@
       @include flex(center);
       gap: var(--size-250);
       padding-block: var(--size-300);
-      @include mq('desktop-small') {
+      @include mq(landscape) {
          justify-content: flex-start;
       }
    }
@@ -81,7 +81,7 @@
       @include mq('tablet-small') {
          flex-direction: row;
       }
-      @include mq('desktop-small') {
+      @include mq(landscape) {
          justify-content: flex-start;
          gap: var(--size-450);
          text-align: left;

@@ -32,7 +32,7 @@
       z-index: 1000;
       background: var(--clr-neutral-100);
       opacity: .35;
-      @include mq('desktop-small') {
+      @include mq(landscape) {
          display: block;
       }
    }
@@ -60,7 +60,7 @@
          gap: var(--size-300);
          padding-inline: var(--size-350);
       }
-      @include mq('desktop-small') {
+      @include mq(landscape) {
          padding-inline: var(--size-600) var(--size-800);
       }
       &[data-active] {
@@ -83,7 +83,7 @@
             display: none;
          }
       }
-      @include mq('desktop-small') {
+      @include mq(landscape) {
          a::before {
             display: unset;
          }
@@ -104,7 +104,7 @@
       a {
          color: var(--clr-neutral-100);
          @include mq('tablet-small') {
-            padding-block: var(--size-500);
+            padding-block: var(--size-300);
          }
          &::before {
             content: attr(data-number);

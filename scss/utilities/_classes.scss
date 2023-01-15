@@ -64,5 +64,10 @@
 
 .text-center {
    text-align: center;
-   @include mq('desktop-small') { text-align: left }
+}
+
+.desktop-text-left {
+   @include mq(landscape) { 
+      text-align: left; 
+   }
 }

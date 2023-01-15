@@ -156,6 +156,7 @@
   --clr-neutral-900: #0B0D17;
   --clr-primary: #D0D6F9;
   --transition-duration: 200ms;
+  --container-width: 1100px;
 }
 
 /*=================
@@ -348,7 +349,7 @@ body#technology {
   background: var(--clr-neutral-100);
   opacity: 0.35;
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   .menu-line {
     display: block;
   }
@@ -378,7 +379,7 @@ body#technology {
     padding-inline: var(--size-350);
   }
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   .nav-list {
     padding-inline: var(--size-600) var(--size-800);
   }
@@ -405,7 +406,7 @@ body#technology {
     display: none;
   }
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   .nav-item a::before {
     display: unset;
   }
@@ -432,7 +433,7 @@ body#technology {
 }
 @media only screen and (min-width: 641px) {
   .nav-item a {
-    padding-block: var(--size-500);
+    padding-block: var(--size-300);
   }
 }
 .nav-item a::before {
@@ -478,14 +479,14 @@ body#technology {
   justify-content: space-around;
   width: 100%;
   flex-direction: column;
-  margin-top: auto;
 }
 #home .main > * {
   flex: 1;
 }
-@media only screen and (min-width: 993px) {
+@media only screen and (orientation: landscape) {
   #home .main {
     flex-direction: row;
+    margin-top: 10rem;
   }
 }
 
@@ -553,7 +554,10 @@ body#technology {
 }
 
 a.cta {
-  padding: 4em 1.5em;
+  height: 9em;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
   font-size: var(--fs-xs);
   letter-spacing: var(--size-50);
@@ -562,7 +566,6 @@ a.cta {
 @media only screen and (min-width: 641px) {
   a.cta {
     font-size: var(--fs-lg);
-    padding-inline: 1.8em;
   }
 }
 @media only screen and (min-width: 1025px) {
@@ -581,9 +584,9 @@ a.cta:hover, a.cta:focus-visible {
   display: flex;
   align-items: center;
   flex-direction: column;
-  max-width: 70%;
+  max-width: min(70%, var(--container-width));
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   #destination .main {
     display: flex;
     justify-content: space-between;
@@ -616,7 +619,7 @@ a.cta:hover, a.cta:focus-visible {
   gap: var(--size-250);
   padding-block: var(--size-300);
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   .planet-navs {
     justify-content: flex-start;
   }
@@ -679,7 +682,7 @@ a.cta:hover, a.cta:focus-visible {
     flex-direction: row;
   }
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   .planet-details {
     justify-content: flex-start;
     gap: var(--size-450);
@@ -721,7 +724,7 @@ a.cta:hover, a.cta:focus-visible {
     flex-direction: column-reverse;
   }
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   #crew .main {
     flex-direction: row-reverse;
     padding-bottom: 0;
@@ -766,7 +769,7 @@ a.cta:hover, a.cta:focus-visible {
     margin-block: var(--size-350);
   }
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (orientation: landscape) {
   .crew-navs {
     display: flex;
     justify-content: flex-start;
@@ -878,7 +881,8 @@ a.cta:hover, a.cta:focus-visible {
   }
 }
 .tech-navigator {
-  padding: 0.8em 1em;
+  height: 3em;
+  aspect-ratio: 1;
   border-radius: 50%;
   font-size: var(--fs-milli);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -910,7 +914,7 @@ a.cta:hover, a.cta:focus-visible {
   transition: opacity var(--transition-duration) linear;
   width: 100vw;
 }
-@media only screen and (min-width: 993px) {
+@media only screen and (orientation: landscape) {
   .tech-img {
     max-width: 30rem;
   }
@@ -962,7 +966,7 @@ a.cta:hover, a.cta:focus-visible {
 }
 
 .container {
-  max-width: var(--width, 1100px);
+  max-width: var(--width, var(--container-width));
   margin-inline: auto;
   padding-inline: var(--padding, var(--size-150));
 }
@@ -1102,8 +1106,9 @@ a.cta:hover, a.cta:focus-visible {
 .text-center {
   text-align: center;
 }
-@media only screen and (min-width: 1025px) {
-  .text-center {
+
+@media only screen and (orientation: landscape) {
+  .desktop-text-left {
     text-align: left;
   }
 }
